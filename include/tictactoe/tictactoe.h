@@ -95,7 +95,7 @@ class Board {
    * the diagonal and anti-diagonal.
    * @return boolean of whether the character won the diagonal or anti-diagonal.
    */
-
+  bool CheckDiagonalsForWinner(char character) const;
 };
 
 }  // namespace tictactoe
