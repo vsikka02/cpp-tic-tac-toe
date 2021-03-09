@@ -59,9 +59,9 @@ BoardState Board::CheckBoardWinCombinations() const {
   if (o_winner && x_winner) {
     return BoardState::UnreachableState;
   } else if (o_winner) {
-    /**if ((GetXAndOCountDifference() == 0)) {
+    if ((GetXAndOCountDifference() == 0)) {
       return BoardState::Owins;
-    }**/
+    }
     return BoardState::UnreachableState;
   } else if (x_winner) {
     if (GetXAndOCountDifference() == 1) {
