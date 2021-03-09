@@ -59,8 +59,8 @@ class Board {
    * This checks all of the win combinations that are possible and checks if
    * the board has valid win combinations or not.
    *
-   * @return BoardState that tells you whether x wins, o wins, unreachable state,
-   * or no board wins.
+   * @return BoardState that tells you whether x wins, o wins, unreachable
+   * state, or no board wins.
    */
   BoardState CheckBoardWinCombinations() const;
 
@@ -72,7 +72,8 @@ class Board {
    * @param board_matrix This is the 2D vector that is going to be transposed
    * @return the transposed board matrix.
    */
-  std::vector<std::vector<char>> TransposeMatrix(std::vector<std::vector<char>> board_matrix) const;
+  std::vector<std::vector<char>> TransposeMatrix(
+      std::vector<std::vector<char>> board_matrix) const;
 
   /**
    * This function is utilized to turn the string into a 2D character vector.
