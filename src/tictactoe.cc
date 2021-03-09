@@ -49,19 +49,19 @@ BoardState Board::CheckBoardWinCombinations() const {
     }
   }
 
-  /**if (CheckDiagonalsForWinner('X')) {
+  if (CheckDiagonalsForWinner('X')) {
     x_winner = true;
   }
   if (CheckDiagonalsForWinner('O')) {
     o_winner = true;
-  }**/
+  }
 
   if (o_winner && x_winner) {
     return BoardState::UnreachableState;
   } else if (o_winner) {
-    if ((GetXAndOCountDifference() == 0)) {
+    /**if ((GetXAndOCountDifference() == 0)) {
       return BoardState::Owins;
-    }
+    }**/
     return BoardState::UnreachableState;
   } else if (x_winner) {
     if (GetXAndOCountDifference() == 1) {
@@ -119,4 +119,20 @@ std::vector<std::vector<char>> Board::TransposeMatrix(
   }
   return transposed_matrix;
 }
+
+bool Board::CheckDiagonalsForWinner(char character) const {
+  bool diagonal_win = true;
+  bool anti_diagonal_win = true;
+
+  for (int i = 0; i < board_size; i++) {
+    if (board_matrix[i][i] != character) {
+      diagonal_win = false;
+    }
+    if (board_matrix[i][board_matrix.size() - i - 1] != character) {
+      anti_diagonal_win = false;
+    }
+  }
+  return diagonal_win || anti_diagonal_win;
+}
+
 } // namespace tictactoe
