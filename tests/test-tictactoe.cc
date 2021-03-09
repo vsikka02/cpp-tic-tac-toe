@@ -30,6 +30,12 @@ TEST_CASE("Unreachable State when Evaluating Board") {
   SECTION("More O's than X's") {
     REQUIRE(Board("--OOO--xo").EvaluateBoard() == BoardState::UnreachableState);
   }
+  SECTION("O wins but X goes again") {
+    REQUIRE(Board("oooxx-x-x").EvaluateBoard() == BoardState::UnreachableState);
+  }
+  SECTION("X wins but O goes again") {
+    REQUIRE(Board("o-oxxx--o").EvaluateBoard() == BoardState::UnreachableState);
+  }
 }
 
 TEST_CASE("Boards with O wins") {
@@ -49,13 +55,13 @@ TEST_CASE("Boards with O wins") {
 
 TEST_CASE("Boards with X wins") {
   SECTION("X wins by rows") {
-    REQUIRE(Board("XXX--o-oo").EvaluateBoard() == BoardState::Xwins);
+    REQUIRE(Board("XXX--o-o-").EvaluateBoard() == BoardState::Xwins);
   }
   SECTION("X wins by columns"){
     REQUIRE(Board("X-ox-yXo-").EvaluateBoard() == BoardState::Xwins);
   }
   SECTION("X wins by diagonal"){
-    REQUIRE(Board("X--OxO-OX").EvaluateBoard() == BoardState::Xwins);
+    REQUIRE(Board("X---xO-OX").EvaluateBoard() == BoardState::Xwins);
   }
   SECTION("X wins by anti-diagonal"){
     REQUIRE(Board("o-X-Xox--").EvaluateBoard() == BoardState::Xwins);
@@ -65,9 +71,21 @@ TEST_CASE("Boards with X wins") {
   }
 }
 
+TEST_CASE("Test boards with no winners") {
+  SECTION("Empty 3 by 3 Board") {
+    REQUIRE(Board("---------").EvaluateBoard() == BoardState::NoWinner);
+  }
+  SECTION("3 by 3 full board") {
+    REQUIRE(Board("x-o--x-o-").EvaluateBoard() == BoardState::NoWinner);
+  }
+  SECTION("5 by 5 Full Board") {
+    REQUIRE(Board("x-o--x-o-xoo--x--oo--xx--").EvaluateBoard() == BoardState::NoWinner);
+  }
+}
+
 TEST_CASE("Test different board sizes") {
   SECTION("X wins by rows") {
-    REQUIRE(Board("o----o-oxxxx---o").EvaluateBoard() == BoardState::Xwins);
+    REQUIRE(Board("o----o-oxxxx----").EvaluateBoard() == BoardState::Xwins);
   }
   SECTION("O wins by columns"){
     REQUIRE(Board("---Ox-x-O----O-x--Ox---Ox").EvaluateBoard() == BoardState::Owins);
