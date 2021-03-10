@@ -36,7 +36,7 @@ BoardState Board::EvaluateBoard() const {
   return CheckBoardWinCombinations();
 }
 
-BoardState Board::CheckBoardWinCombinations() const {
+auto Board::CheckBoardWinCombinations() const -> BoardState {
   bool x_winner = false;
   bool o_winner = false;
 

@@ -58,7 +58,7 @@ TEST_CASE("Boards with X wins") {
     REQUIRE(Board("XXX--o-o-").EvaluateBoard() == BoardState::Xwins);
   }
   SECTION("X wins by columns"){
-    REQUIRE(Board("X-ox-yXo-").EvaluateBoard() == BoardState::Xwins);
+    REQUIRE(Board("X-ox--Xo-").EvaluateBoard() == BoardState::Xwins);
   }
   SECTION("X wins by diagonal"){
     REQUIRE(Board("X---xO-OX").EvaluateBoard() == BoardState::Xwins);
@@ -91,7 +91,7 @@ TEST_CASE("Test different board sizes") {
     REQUIRE(Board("---Ox-x-O----O-x--Ox---Ox").EvaluateBoard() == BoardState::Owins);
   }
   SECTION("X wins by diagonal"){
-    REQUIRE(Board("X--O--x---oox-----x----ox").EvaluateBoard() == BoardState::Xwins);
+    REQUIRE(Board("X09O90x888oox!!!!!x%$**ox").EvaluateBoard() == BoardState::Xwins);
   }
   SECTION("O wins by anti-diagonal"){
     REQUIRE(Board("xx-O--O--Ox-O-x-").EvaluateBoard() == BoardState::Owins);
